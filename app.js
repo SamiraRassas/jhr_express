@@ -35,6 +35,17 @@ app.use(cors());
 //   res.render("index");
 // });
 
+
+app.get('/home', async (req, res) => {
+  try{ 
+      const data = await Home.find();
+      // res.json(data);
+      res.send(data)
+  }
+  catch(error){
+      res.status(500).send({message: error.message})
+  }
+});
 app.post("/signup", async (req, res) => {
   const user = req.body;
   if (!validator.isEmail(user.email)) {
